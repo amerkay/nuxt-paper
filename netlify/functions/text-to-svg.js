@@ -1,6 +1,17 @@
+const path = require('path')
+
+// Docs https://github.com/shrhdk/text-to-svg
 const TextToSVG = require('text-to-svg')
 
-const textToSVG = TextToSVG.loadSync('netlify/fonts/Redressed-Regular.ttf')
+// const textToSVG = TextToSVG.loadSync()
+
+// path of the included file will be `process.env.LAMBDA_TASK_ROOT/{name_of_function}/{included_filename}`
+const fileName = './fonts/Redressed-Regular.ttf'
+const resolved = process.env.LAMBDA_TASK_ROOT
+  ? path.resolve(process.env.LAMBDA_TASK_ROOT, fileName)
+  : path.resolve(__dirname, fileName)
+
+const textToSVG = TextToSVG.loadSync(resolved)
 
 exports.handler = function (event, context, callback) {
   const text = event.queryStringParameters.text || 'Test Co'
