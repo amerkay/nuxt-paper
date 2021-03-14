@@ -34,20 +34,14 @@ export default {
     var textX = radius * 2 + marginX
     var textY = iconY - radius
 
-    // Create a rectangle shaped path to the right
+    // Create a rectangle shaped path to the right, to fit the text into.
     var pathText = new this.paper.Path.Rectangle({
       point: [textX, textY],
       size: [this.paper.view.size.width - textX, radius * 2],
-      // fillColor: 'white',
     })
 
-    this.textInFont('TestX', 'fontX').then(() => {
-      console.log('here!')
-
-      var text = this.paper.project.importSVG(this.textSVG, {
-        // expandShapes: true,
-      })
-
+    this.textInFont('Test X', 'fontX').then(() => {
+      var text = this.paper.project.importSVG(this.textSVG)
       text.set({
         position: new this.paper.Point(textX + text.bounds.width / 2, iconY),
         strokeWidth: 0,
