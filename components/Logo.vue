@@ -34,31 +34,37 @@ export default {
     var textX = radius * 2 + marginX
     var textY = iconY - radius
 
-    // Create a rectangle shaped path with its top left corner
-    // at {x: 80, y: 25} and a size of {width: 75, height: 50}:
+    // Create a rectangle shaped path to the right
     var pathText = new this.paper.Path.Rectangle({
       point: [textX, textY],
       size: [this.paper.view.size.width - textX, radius * 2],
       // fillColor: 'white',
     })
 
-    var text = new this.paper.PointText(
-      new this.paper.Point(textX, iconY * 1.3)
-    )
-    text.content = 'Test'
-    text.style = {
-      fontFamily: 'Ubuntu',
-      fontWeight: 'bold',
-      fontSize: 75,
-      fillColor: 'red',
-      justification: 'left',
-    }
+    this.textInFont('TestX', 'fontX').then(() => {
+      console.log('here!')
 
-    // Fit the circlePath to the bounding rectangle of
-    // the rectangular path:
-    console.log(text.bounds)
-    if (text.bounds.width > pathText.bounds.width)
-      text.fitBounds(pathText.bounds)
+      var text = this.paper.project.importSVG(this.textSVG, {
+        // expandShapes: true,
+      })
+
+      text.set({
+        position: new this.paper.Point(textX + text.bounds.width / 2, iconY),
+        strokeWidth: 0,
+      })
+
+      // Fit text to pathText if needed
+      if (text.bounds.width > pathText.bounds.width)
+        text.fitBounds(pathText.bounds)
+    })
+  },
+  methods: {
+    async textInFont(textStr, fontName) {
+      const svg = await this.$axios.$get(
+        'http://localhost:8888/.netlify/functions/text-to-svg?text=' + textStr
+      )
+      this.textSVG = svg
+    },
   },
 }
 </script>
