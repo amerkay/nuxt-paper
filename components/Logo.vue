@@ -10,19 +10,23 @@ import { mapState } from 'vuex'
 
 export default {
   props: {
+    logoId: {
+      type: String,
+      default: 0,
+    },
     text: {
       type: String,
       default: '-----',
     },
-    icon: {
-      type: Object,
+    iconUrl: {
+      type: String,
       default: {},
     },
   },
   data() {
     return {
-      imagePath: '',
       paper: null, // Our Paper instance
+      paperScope: null,
     }
   },
   computed: {
@@ -30,7 +34,9 @@ export default {
   },
   mounted() {
     // Create and store the Paper instance in a Vue variable (this.paper)
-    this.paper = this.$paper.setup(this.$refs.view)
+    // Multiple Canvases issue: https://stackoverflow.com/questions/16865863/paper-js-how-to-set-up-multiple-canvases-using-only-javascript
+    this.paper = new this.$paper.PaperScope()
+    this.paper.setup(this.$refs.view)
     this.buildLogo()
   },
   watch: {
@@ -41,6 +47,8 @@ export default {
   },
   methods: {
     async buildLogo() {
+      this.paper.activate()
+
       // start with clean canvas before building logo
       this.paper.project.clear()
 
@@ -56,7 +64,7 @@ export default {
         // strokeColor: new this.paper.Color(1, 0, 0),
       })
 
-      await this.getIcon(this.icon.icon_url).then(() => {
+      await this.getIcon(this.iconUrl).then(() => {
         var icon = this.paper.project.importSVG(this.iconSVG)
 
         // Fit icon to iconPath
