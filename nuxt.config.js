@@ -41,7 +41,33 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  //
+  // axios: {
+  //   baseURL:
+  //     // Used as fallback if no runtime config is provided
+  //     process.env.NODE_ENV == 'production'
+  //       ? 'https://9amim.netlify.app'
+  //       : 'http://localhost:8888',
+  // },
+
+  // See https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
+  // and https://axios.nuxtjs.org/options
+  publicRuntimeConfig: {
+    axios: {
+      // browserBaseURL: process.env.BROWSER_BASE_URL,
+      browserBaseURL:
+        process.env.NODE_ENV == 'production'
+          ? 'https://9amim.netlify.app'
+          : 'http://localhost:8888',
+    },
+  },
+
+  // privateRuntimeConfig: {
+  //   axios: {
+  //     // baseURL: process.env.BASE_URL,
+  //     baseURL: 'http://localhost:8888',
+  //   },
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

@@ -55,8 +55,7 @@ export default {
   methods: {
     async textInFont(textStr, fontName) {
       const svg = await this.$axios.$get(
-        'https://9amim.netlify.app/.netlify/functions/text-to-svg?text=' +
-          textStr
+        '/.netlify/functions/text-to-svg?text=' + textStr
       )
       this.textSVG = svg
     },
