@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center min-h-screen mx-auto text-center">
-    <div class="w-1/3 mb-20">
-      <h1 class="my-20 text-6xl font-bold">nuxt-paper</h1>
+    <div class="w-full p-5 mb-20 md:max-w-md">
+      <h1 class="my-10 text-6xl font-bold">nuxt-paper</h1>
 
       <settings-bar />
 
