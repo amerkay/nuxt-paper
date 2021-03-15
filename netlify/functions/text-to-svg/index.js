@@ -1,24 +1,7 @@
-// Docs https://github.com/shrhdk/text-to-svg
-const TextToSVG = require('text-to-svg')
-
-// const textToSVG = TextToSVG.loadSync()
-
 const path = require('path')
 
-// const fs = require('fs')
-
-// fs.readdirSync('/var/task/src/netlify/functions/text-to-svg/fonts/').forEach(
-//   (file) => {
-//     console.log(file)
-//   }
-// )
-
-// see https://github.com/netlify/function-deploy-test/blob/master/lambda/zipped-function/zipped-function.js#L6-L8
-// path of the included file will be `process.env.LAMBDA_TASK_ROOT/{name_of_function}/{included_filename}`
-// const fileName = 'Redressed-Regular.ttf'
-// const resolved = process.env.LAMBDA_TASK_ROOT
-//   ? path.resolve(process.env.LAMBDA_TASK_ROOT, fileName)
-//   : path.resolve(__dirname, fileName)
+// Docs https://github.com/shrhdk/text-to-svg
+const TextToSVG = require('text-to-svg')
 
 // Production path
 var fileName = 'Redressed-Regular.ttf'

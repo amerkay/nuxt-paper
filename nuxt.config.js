@@ -41,14 +41,7 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  //
-  // axios: {
-  //   baseURL:
-  //     // Used as fallback if no runtime config is provided
-  //     process.env.NODE_ENV == 'production'
-  //       ? 'https://9amim.netlify.app'
-  //       : 'http://localhost:8888',
-  // },
+  axios: {},
 
   // See https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
   // and https://axios.nuxtjs.org/options
@@ -57,8 +50,8 @@ export default {
       // browserBaseURL: process.env.BROWSER_BASE_URL,
       browserBaseURL:
         process.env.NODE_ENV == 'production'
-          ? 'https://9amim.netlify.app'
-          : 'http://localhost:8888',
+          ? 'https://9amim.netlify.app/.netlify/functions'
+          : 'http://localhost:8888/.netlify/functions',
     },
   },
 
