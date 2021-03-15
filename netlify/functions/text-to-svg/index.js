@@ -3,7 +3,7 @@ const path = require('path')
 // Docs https://github.com/shrhdk/text-to-svg
 const TextToSVG = require('text-to-svg')
 
-// Production path
+// Production or Dev mode path
 var fileName = 'Redressed-Regular.ttf'
 var fontPath = '/var/task/src/netlify/functions/text-to-svg/fonts/'
 if (process.env.NODE_ENV !== 'production') {
@@ -15,6 +15,7 @@ const textToSVG = TextToSVG.loadSync(
 )
 
 exports.handler = function (event, context, callback) {
+  // Read the query line ?text=
   const text = event.queryStringParameters.text || 'Test Co'
 
   const attributes = { fill: 'red', stroke: null }

@@ -14,7 +14,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/styles/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['@/plugins/paper.js'],
@@ -41,19 +41,24 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL:
+      process.env.NODE_ENV == 'production'
+        ? 'https://9amim.netlify.app/.netlify/functions'
+        : 'http://localhost:8888/.netlify/functions',
+  },
 
   // See https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
   // and https://axios.nuxtjs.org/options
-  publicRuntimeConfig: {
-    axios: {
-      // browserBaseURL: process.env.BROWSER_BASE_URL,
-      browserBaseURL:
-        process.env.NODE_ENV == 'production'
-          ? 'https://9amim.netlify.app/.netlify/functions'
-          : 'http://localhost:8888/.netlify/functions',
-    },
-  },
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     // browserBaseURL: process.env.BROWSER_BASE_URL,
+  //     browserBaseURL:
+  //       process.env.NODE_ENV == 'production'
+  //         ? 'https://9amim.netlify.app/.netlify/functions'
+  //         : 'http://localhost:8888/.netlify/functions',
+  //   },
+  // },
 
   // privateRuntimeConfig: {
   //   axios: {
@@ -73,5 +78,7 @@ export default {
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    // analyze: true // to analyze bundle JS file sizes
+  },
 }

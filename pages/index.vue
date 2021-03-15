@@ -1,50 +1,36 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo class="border border-blue-500 bg-gray-100" />
-      <h1 class="title mt-5">nuxt-paper</h1>
+  <div class="flex justify-center min-h-screen mx-auto text-center">
+    <div class="w-1/3">
+      <h1 class="my-20 text-6xl font-bold">nuxt-paper</h1>
+
+      <settings-bar />
+
+      <Logo
+        :icon="iconList[20]"
+        :text="logoText"
+        class="bg-gray-100 border border-blue-500"
+      />
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState('current', ['logoText']),
+    ...mapState('icons', ['iconList']),
+  },
+  async asyncData({ params, store, error, payload, query }) {
+    await store.dispatch('icons/getIconsForTerms', ['rabbit', 'hat'])
+  },
+}
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+/* Sample `apply` at-rules with Tailwind CSS *
+ .container {
+  @apply min-h-screen max-w-screen-md flex justify-center items-center text-center mx-auto;
+} */
 </style>
